@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Tiempo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .mensaje {
+            font-size: 1.2em;
+            font-style: italic;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comité Anti Paro UNAL</h1>
+    <p>Número de horas, minutos y segundos que el Comité Anti Paro UNAL ha evitado un nuevo paro:</p>
+    <p id="contador"></p>
+    <p class="mensaje">El trabajo del Comité Anti Paro UNAL a menudo pasa desapercibido, pero día tras día, este movimiento opera en las sombras para garantizar la continuidad académica. Esta página busca reconocer su esfuerzo incansable por mantener la normalidad en nuestra universidad.</p>
+
+    <script>
+        function actualizarContador() {
+            const fechaInicio = new Date('2024-06-07T00:00:00');
+            const ahora = new Date();
+            const diferencia = ahora - fechaInicio;
+            
+            const horas = Math.floor(diferencia / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+            
+            document.getElementById('contador').textContent = `${horas.toLocaleString()} horas, ${minutos} minutos, ${segundos} segundos`;
+        }
+        actualizarContador();
+        setInterval(actualizarContador, 1000); // Actualiza cada segundo
+    </script>
+</body>
+</html>
