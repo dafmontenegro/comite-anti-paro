@@ -1,56 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comité Anti Paro UNAL</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        .mensaje {
-            font-size: 1.2em;
-            font-style: italic;
-            max-width: 600px;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comité Anti Paro UNAL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .contador {
+      color: red;
+      font-size: 1.8em;
+      font-weight: bold;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .unidad {
+      background: #fff;
+      padding: 10px 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .mensaje {
+      font-size: 1.2em;
+      font-style: italic;
+      max-width: 600px;
+      margin-top: 30px;
+    }
+    .whatsapp {
+      margin-top: 40px;
+      text-decoration: none;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1.1em;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+    .whatsapp:hover {
+      background-color: #1ebc59;
+    }
+    .lema {
+      margin-top: 30px;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #222;
+    }
+    .lema span {
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
 </head>
 <body>
-    <h1>Comité Anti Paro UNAL</h1>
-    <p>Número de horas, minutos y segundos que el Comité Anti Paro UNAL ha evitado un nuevo paro:</p>
-    <p id="contador"></p>
-    <p class="mensaje">El trabajo del Comité Anti Paro UNAL a menudo pasa desapercibido, pero día tras día, este movimiento opera en las sombras para garantizar la continuidad académica. Esta página busca reconocer su esfuerzo incansable por mantener la normalidad en nuestra universidad.</p>
+  <h1>Comité Anti Paro UNAL</h1>
+  <p>Número de meses, semanas, días, horas, minutos y segundos que el Comité Anti Paro UNAL ha evitado un nuevo paro:</p>
+  <div class="contador" id="contador"></div>
 
-    <script>
-        function actualizarContador() {
-            const fechaInicio = new Date('2024-06-07T00:00:00');
-            const ahora = new Date();
-            const diferencia = ahora - fechaInicio;
-            
-            const horas = Math.floor(diferencia / (1000 * 60 * 60));
-            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-            
-            document.getElementById('contador').textContent = `${horas.toLocaleString()} horas, ${minutos} minutos, ${segundos} segundos`;
-        }
-        actualizarContador();
-        setInterval(actualizarContador, 1000); // Actualiza cada segundo
-    </script>
+  <p class="mensaje">El trabajo del Comité Anti Paro UNAL a menudo pasa desapercibido, pero día tras día, este movimiento opera en las sombras para garantizar la continuidad académica. Esta página busca reconocer su esfuerzo incansable por mantener la normalidad en nuestra universidad.</p>
+
+  <div class="lema">
+    <span>TROPEL = NO PARO</span>
+    <span>BLOQUEO = NO PARO</span>
+    <span>OCUPACIÓN = NO PARO</span>
+  </div>
+  
+  <a class="whatsapp" href="https://whatsapp.com/channel/0029VbAIoYYJuyAFG0fjld23" target="_blank" rel="noopener noreferrer">
+    Únete a nuestro canal de WhatsApp
+  </a>
+
+  <script>
+    function actualizarContador() {
+      const fechaInicio = new Date('2024-06-07T00:00:00');
+      const ahora = new Date();
+      let diferencia = Math.floor((ahora - fechaInicio) / 1000); // Total en segundos
+
+      const segundos = diferencia % 60;
+      diferencia = Math.floor(diferencia / 60);
+      const minutos = diferencia % 60;
+      diferencia = Math.floor(diferencia / 60);
+      const horas = diferencia % 24;
+      diferencia = Math.floor(diferencia / 24);
+      const semanas = Math.floor(diferencia / 7);
+      const dias = diferencia % 7;
+
+      const meses = Math.floor((ahora.getFullYear() - fechaInicio.getFullYear()) * 12 + ahora.getMonth() - fechaInicio.getMonth());
+
+      document.getElementById('contador').innerHTML = `
+        <div class="unidad">${meses} meses</div>
+        <div class="unidad">${semanas} semanas</div>
+        <div class="unidad">${dias} días</div>
+        <div class="unidad">${horas} horas</div>
+        <div class="unidad">${minutos} minutos</div>
+        <div class="unidad">${segundos} segundos</div>
+      `;
+    }
+
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+  </script>
 </body>
 </html>
