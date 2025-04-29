@@ -80,6 +80,13 @@
     <span>OCUPACIÓN = NO PARO</span>
   </div>
   
+  <!-- Comunicado agregado -->
+  <p class="mensaje">
+    <strong>COMUNICADO COMITÉ ANTI PARO:</strong><br><br>
+    Gracias al apoyo y constantes donaciones de nuestros patrocinadores cuyo interés es mantener la normalidad académica, el día de hoy y mientras la UN se encuentra en un momento de incertidumbre, nos alegra comunicar que nuestro alcance es cada vez mayor, ya que no nos rendimos en llevar nuestro mensaje anti paro, a cual alma desamparada que lo necesite.<br><br>
+    Es por eso que nos alegra comunicar, que oficialmente tenemos canal de WhatsApp, y aunque inicialmente por falta de presupuesto lo compartiremos con el comité pro memes, los invitamos a unirse; para así estar debidamente desinformados y cuestionarse si su vida es una comedia o una tragedia:
+  </p>
+
   <a class="whatsapp" href="https://whatsapp.com/channel/0029VbAIoYYJuyAFG0fjld23" target="_blank" rel="noopener noreferrer">
     Únete a nuestro canal de WhatsApp
   </a>
@@ -89,18 +96,23 @@
       const fechaInicio = new Date('2024-06-07T00:00:00');
       const ahora = new Date();
       let diferencia = Math.floor((ahora - fechaInicio) / 1000); // Total en segundos
-
+  
       const segundos = diferencia % 60;
       diferencia = Math.floor(diferencia / 60);
       const minutos = diferencia % 60;
       diferencia = Math.floor(diferencia / 60);
       const horas = diferencia % 24;
       diferencia = Math.floor(diferencia / 24);
-      const semanas = Math.floor(diferencia / 7);
-      const dias = diferencia % 7;
-
-      const meses = Math.floor((ahora.getFullYear() - fechaInicio.getFullYear()) * 12 + ahora.getMonth() - fechaInicio.getMonth());
-
+      const diasTotales = diferencia;
+  
+      const semanasTotales = Math.floor(diasTotales / 7);
+      const dias = diasTotales % 7;
+  
+      const mesesTotales = Math.floor(semanasTotales / 4);
+      const semanas = semanasTotales % 4;
+  
+      const meses = mesesTotales; // No se hace % 12 para que puedan crecer indefinidamente
+  
       document.getElementById('contador').innerHTML = `
         <div class="unidad">${meses} meses</div>
         <div class="unidad">${semanas} semanas</div>
@@ -110,9 +122,15 @@
         <div class="unidad">${segundos} segundos</div>
       `;
     }
-
+  
     actualizarContador();
     setInterval(actualizarContador, 1000);
   </script>
+    
+  <footer style="margin-top: 60px; padding: 20px; background-color: #ddd; width: 100%; text-align: center; font-size: 0.9em; color: #333;">
+    <p>&copy; 2025 Comité Anti Paro UNAL. Todos los derechos reservados.</p>
+    <p>Desarrollado por el Comité Anti Paro UNAL.</p>
+  </footer>
+  
 </body>
 </html>
