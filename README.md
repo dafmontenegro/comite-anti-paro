@@ -1,6 +1,6 @@
 # Comité Anti Paro UNAL
 
-Número de horas, minutos y segundos que el Comité Anti Paro UNAL ha evitado un nuevo paro:
+Número de meses, semanas, días, horas, minutos y segundos que el Comité Anti Paro UNAL ha evitado un nuevo paro:
 
 [comiteantiparounal.com](https://montenegrodanielfelipe.com/comite-anti-paro/)
 
